@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+- macOS build is now signed with a Developer ID and notarized by Apple, so it opens without the Gatekeeper warning.
+
 ## 0.1.0
 
 - PostgreSQL, MySQL / MariaDB, SQL Server, SQLite, Redis and MongoDB connections, optionally through an SSH tunnel.

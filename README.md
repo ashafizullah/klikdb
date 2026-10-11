@@ -28,7 +28,7 @@
 
 Get the latest build from [Releases](https://github.com/ashafizullah/tablory/releases/latest):
 
-- **macOS** (Apple Silicon + Intel): `Tablory_*_universal.dmg`. The app is ad-hoc signed, not notarized, so the first time right-click Tablory → Open, or run `xattr -cr /Applications/Tablory.app`.
+- **macOS** (Apple Silicon + Intel): `Tablory_*_universal.dmg`.
 - **Windows**: `Tablory_*_x64-setup.exe` or the `.msi`.
 
 The app checks for updates on launch and daily; click the version number on the connections screen to check now.

@@ -51,6 +51,13 @@ jobs:
           # Signs the update packages; the app ships the matching public key.
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ""
+          # Developer ID signing + notarization (macOS only).
+          APPLE_CERTIFICATE: "${{ matrix.platform == 'macos-latest' && secrets.APPLE_CERTIFICATE || '' }}"
+          APPLE_CERTIFICATE_PASSWORD: "${{ matrix.platform == 'macos-latest' && secrets.APPLE_CERTIFICATE_PASSWORD || '' }}"
+          APPLE_SIGNING_IDENTITY: "${{ matrix.platform == 'macos-latest' && 'Developer ID Application: Adam Suchi Hafizullah (5R7GGX57J4)' || '' }}"
+          APPLE_ID: "${{ matrix.platform == 'macos-latest' && secrets.APPLE_ID || '' }}"
+          APPLE_PASSWORD: "${{ matrix.platform == 'macos-latest' && secrets.APPLE_PASSWORD || '' }}"
+          APPLE_TEAM_ID: "${{ matrix.platform == 'macos-latest' && secrets.APPLE_TEAM_ID || '' }}"
         with:
           tagName: ${{ github.ref_name }}
           releaseName: Tablory ${{ github.ref_name }}
@@ -61,7 +68,6 @@ jobs:
             ## Download
 
             **macOS** (Apple Silicon + Intel): download `Tablory_*_universal.dmg`, open it and drag Tablory into Applications.
-            The app is ad-hoc signed but not notarized: the first time, right-click Tablory → Open, or run `xattr -cr /Applications/Tablory.app`.
 
             **Windows**: download `Tablory_*_x64-setup.exe` (or the `.msi`).
           releaseDraft: true
