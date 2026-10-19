@@ -1,0 +1,73 @@
+name: Bug report
+description: Something in KlikDB doesn't work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please search the [existing issues](https://github.com/ashafizullah/klikdb/issues) first. For security problems, use [Report a vulnerability](https://github.com/ashafizullah/klikdb/security/advisories/new) instead.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you expected, and what happened instead.
+      placeholder: Opening a PostgreSQL table with an array column shows every row as [object Object].
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: KlikDB version
+      description: The release you installed, e.g. from the DMG or installer file name.
+      placeholder: 0.1.1
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Windows
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      placeholder: macOS 15.5 (Apple Silicon) / Windows 11 24H2 / Ubuntu 24.04
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Database
+      options:
+        - PostgreSQL
+        - MySQL / MariaDB
+        - SQL Server
+        - SQLite
+        - Redis
+        - MongoDB
+        - Not database-specific
+    validations:
+      required: true
+  - type: input
+    id: engine-version
+    attributes:
+      label: Database version and connection type
+      description: Never paste real hostnames, passwords or connection strings.
+      placeholder: PostgreSQL 16, over an SSH tunnel
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and screenshots
+      description: Error messages or logs. Remove credentials and private data first.
