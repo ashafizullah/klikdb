@@ -15,6 +15,7 @@
   <img src="https://img.shields.io/badge/Rust-stable-000000?logo=rust" alt="Rust">
   <a href="https://github.com/ashafizullah/klikdb/actions/workflows/ci.yml"><img src="https://github.com/ashafizullah/klikdb/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://github.com/ashafizullah/klikdb/releases/latest"><img src="https://img.shields.io/github/v/release/ashafizullah/klikdb?include_prereleases&label=release" alt="Release"></a>
+  <a href="https://github.com/ashafizullah/klikdb/releases"><img src="https://img.shields.io/github/downloads/ashafizullah/klikdb/total?color=brightgreen" alt="Downloads"></a>
 </p>
 
 <p align="center">
@@ -98,7 +99,7 @@ Without `KLIKDB_TEST_DOCKER` only the unit tests and the SQLite test run.
 
 ## Contributing
 
-Issues and pull requests are welcome. CI runs type checks, the frontend build, `cargo fmt`, `clippy` and `cargo test`. Please run them locally before opening a PR.
+Issues and pull requests are welcome. CI runs type checks, the frontend build, `cargo fmt`, `clippy` and `cargo test`. Please run them locally before opening a PR. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, checks and guidelines.
 
 ### Releasing
 
