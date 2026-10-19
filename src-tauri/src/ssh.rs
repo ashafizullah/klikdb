@@ -26,7 +26,7 @@ impl Drop for Tunnel {
 }
 
 /// Accepts keys from ~/.ssh/known_hosts, else trusts on first use and records
-/// them in Tablory's own known_hosts. A changed key is always rejected.
+/// them in KlikDB's own known_hosts. A changed key is always rejected.
 struct HostKeyCheck {
     host: String,
     port: u16,

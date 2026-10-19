@@ -53,17 +53,17 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ""
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: Tablory ${{ github.ref_name }}
+          releaseName: KlikDB ${{ github.ref_name }}
           # The app's update dialog shows this up to "## Download".
           releaseBody: |
             ${{ steps.changelog.outputs.notes }}
 
             ## Download
 
-            **macOS** (Apple Silicon + Intel): download `Tablory_*_universal.dmg`, open it and drag Tablory into Applications.
-            The app is ad-hoc signed but not notarized: the first time, right-click Tablory → Open, or run `xattr -cr /Applications/Tablory.app`.
+            **macOS** (Apple Silicon + Intel): download `KlikDB_*_universal.dmg`, open it and drag KlikDB into Applications.
+            The app is ad-hoc signed but not notarized: the first time, right-click KlikDB → Open, or run `xattr -cr /Applications/KlikDB.app`.
 
-            **Windows**: download `Tablory_*_x64-setup.exe` (or the `.msi`).
+            **Windows**: download `KlikDB_*_x64-setup.exe` (or the `.msi`).
           releaseDraft: true
           includeUpdaterJson: true
           args: ${{ matrix.args }}

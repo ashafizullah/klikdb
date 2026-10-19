@@ -360,7 +360,7 @@ impl MssqlDriver {
                 secrets.password.as_deref().unwrap_or(""),
             ));
         }
-        config.application_name("Tablory");
+        config.application_name("KlikDB");
         if !database.is_empty() {
             config.database(database);
         }

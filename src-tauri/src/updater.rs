@@ -79,7 +79,7 @@ fn strip_inline(line: &str) -> String {
 fn notify(app: &AppHandle, kind: MessageDialogKind, message: String) {
     app.dialog()
         .message(message)
-        .title("Tablory")
+        .title("KlikDB")
         .kind(kind)
         .blocking_show();
 }
@@ -102,7 +102,7 @@ pub async fn check(app: AppHandle, manual: bool) {
                 notes
             };
             let message = format!(
-                "Tablory {} is available. You have {}.\n\n{notes}",
+                "KlikDB {} is available. You have {}.\n\n{notes}",
                 update.version, update.current_version
             );
             let install = app
@@ -129,7 +129,7 @@ pub async fn check(app: AppHandle, manual: bool) {
             &app,
             MessageDialogKind::Info,
             format!(
-                "You're up to date. Tablory {} is the latest version.",
+                "You're up to date. KlikDB {} is the latest version.",
                 app.package_info().version
             ),
         ),
@@ -149,7 +149,7 @@ mod tests {
 
     #[test]
     fn keeps_the_changelog_as_plain_text() {
-        let notes = "\n### New\n\n- **QR** scanning in `Copy Text` mode\n* See [the docs](https://x.y)\n\n\n### Fixes\n\n- OCR on macOS 27\n\n## Download\n\n**macOS**: download `Tablory.dmg`";
+        let notes = "\n### New\n\n- **QR** scanning in `Copy Text` mode\n* See [the docs](https://x.y)\n\n\n### Fixes\n\n- OCR on macOS 27\n\n## Download\n\n**macOS**: download `KlikDB.dmg`";
         assert_eq!(
             changelog(notes),
             "New\n\n• QR scanning in Copy Text mode\n• See the docs\n\nFixes\n\n• OCR on macOS 27"

@@ -3131,6 +3131,41 @@ dependencies = [
 ]
 
 [[package]]
+name = "klikdb"
+version = "0.1.0"
+dependencies = [
+ "aes 0.8.4",
+ "anyhow",
+ "async-trait",
+ "base64 0.22.1",
+ "blowfish 0.9.1",
+ "cbc 0.1.2",
+ "chrono",
+ "futures-util",
+ "json5",
+ "keyring",
+ "mongodb",
+ "redis",
+ "roxmltree",
+ "russh",
+ "rust_decimal",
+ "rust_xlsxwriter",
+ "serde",
+ "serde_json",
+ "sha1 0.10.7",
+ "sqlx",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-dialog",
+ "tauri-plugin-single-instance",
+ "tauri-plugin-updater",
+ "tiberius",
+ "tokio",
+ "tokio-util",
+ "uuid",
+]
+
+[[package]]
 name = "lazy_static"
 version = "1.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6177,41 +6212,6 @@ dependencies = [
  "pkg-config",
  "toml 0.8.2",
  "version-compare",
-]
-
-[[package]]
-name = "tablory"
-version = "0.1.0"
-dependencies = [
- "aes 0.8.4",
- "anyhow",
- "async-trait",
- "base64 0.22.1",
- "blowfish 0.9.1",
- "cbc 0.1.2",
- "chrono",
- "futures-util",
- "json5",
- "keyring",
- "mongodb",
- "redis",
- "roxmltree",
- "russh",
- "rust_decimal",
- "rust_xlsxwriter",
- "serde",
- "serde_json",
- "sha1 0.10.7",
- "sqlx",
- "tauri",
- "tauri-build",
- "tauri-plugin-dialog",
- "tauri-plugin-single-instance",
- "tauri-plugin-updater",
- "tiberius",
- "tokio",
- "tokio-util",
- "uuid",
 ]
 
 [[package]]

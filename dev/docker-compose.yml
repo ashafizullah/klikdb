@@ -6,14 +6,14 @@ services:
   postgres:
     image: postgres:17-alpine
     environment:
-      POSTGRES_PASSWORD: tablory
+      POSTGRES_PASSWORD: klikdb
       POSTGRES_DB: shop
     ports: ["54329:5432"]
     volumes: ["./seed/postgres.sql:/docker-entrypoint-initdb.d/seed.sql:ro"]
   mysql:
     image: mysql:8.4
     environment:
-      MYSQL_ROOT_PASSWORD: tablory
+      MYSQL_ROOT_PASSWORD: klikdb
       MYSQL_DATABASE: shop
     ports: ["33069:3306"]
     volumes: ["./seed/mysql.sql:/docker-entrypoint-initdb.d/seed.sql:ro"]
@@ -23,17 +23,17 @@ services:
     platform: linux/amd64
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "Tablory!2026"
+      MSSQL_SA_PASSWORD: "KlikDB!2026"
     ports: ["14339:1433"]
   redis:
     image: redis:7-alpine
-    command: ["redis-server", "--requirepass", "tablory"]
+    command: ["redis-server", "--requirepass", "klikdb"]
     ports: ["63799:6379"]
   mongo:
     image: mongo:7
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: tablory
+      MONGO_INITDB_ROOT_PASSWORD: klikdb
     ports: ["27019:27017"]
   bastion:
     build: ./ssh

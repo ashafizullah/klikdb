@@ -90,7 +90,7 @@ impl MongoDriver {
             }
             o
         };
-        options.app_name = Some("Tablory".into());
+        options.app_name = Some("KlikDB".into());
         options.server_selection_timeout = Some(Duration::from_secs(10));
         options.connect_timeout = Some(Duration::from_secs(10));
         let database = options

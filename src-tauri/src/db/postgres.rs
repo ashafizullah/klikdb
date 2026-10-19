@@ -38,7 +38,7 @@ impl PgDriver {
             .username(&profile.user)
             .password(secrets.password.as_deref().unwrap_or(""))
             .database(database)
-            .application_name("Tablory")
+            .application_name("KlikDB")
             .ssl_mode(match profile.ssl_mode {
                 SslMode::Disable => PgSslMode::Disable,
                 SslMode::Prefer => PgSslMode::Prefer,

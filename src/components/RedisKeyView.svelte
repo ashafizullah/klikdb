@@ -12,7 +12,7 @@
 
   const session = $derived(app.session!);
   /** Placeholder used to delete a list item by index (LSET + LREM). */
-  const LIST_TOMBSTONE = "__tablory_deleted__";
+  const LIST_TOMBSTONE = "__klikdb_deleted__";
 
   let data = $state<RedisValue | null>(null);
   let error = $state<string | null>(null);

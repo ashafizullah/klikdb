@@ -6,7 +6,7 @@ use tauri::{AppHandle, Emitter, Runtime};
 
 use crate::updater;
 
-const REPO: &str = "https://github.com/ashafizullah/tablory";
+const REPO: &str = "https://github.com/ashafizullah/klikdb";
 
 /// The webview handles the shortcuts itself. macOS gets real key equivalents
 /// (the webview sees the key first); elsewhere the shortcut is only shown,
@@ -72,12 +72,12 @@ pub fn build<R: Runtime>(app: &AppHandle<R>) -> tauri::Result<Menu<R>> {
     let mut help = SubmenuBuilder::new(app, "Help");
     if !cfg!(target_os = "macos") {
         help = help
-            .about_with_text("About Tablory", Some(about.clone()))
+            .about_with_text("About KlikDB", Some(about.clone()))
             .item(&check_updates)
             .separator();
     }
     let help = help
-        .text("website", "Tablory on GitHub")
+        .text("website", "KlikDB on GitHub")
         .text("issues", "Report an Issue")
         .text("releases", "Release Notes")
         .build()?;

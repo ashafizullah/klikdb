@@ -1,5 +1,5 @@
 {
-  "name": "tablory",
+  "name": "klikdb",
   "version": "0.1.0",
   "description": "Free, open-source, native database manager for PostgreSQL, MySQL, SQLite and more",
   "private": true,

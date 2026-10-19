@@ -1,17 +1,17 @@
 //! Driver integration tests. SQLite always runs; the server tests need the dev
 //! stack (`docker compose -f dev/docker-compose.yml up -d`) and
-//! `TABLORY_TEST_DOCKER=1`.
+//! `KLIKDB_TEST_DOCKER=1`.
 
 use std::sync::Arc;
 use std::time::Duration;
 
+use klikdb_lib::connections::{ConnectionProfile, DbKind, Secrets, SshAuth, SshConfig, SslMode};
+use klikdb_lib::db::{self, ColValue, Driver, Filter, RowChange, RowsRequest, Sort, TableRef};
+use klikdb_lib::session::Sessions;
 use serde_json::{json, Value};
-use tablory_lib::connections::{ConnectionProfile, DbKind, Secrets, SshAuth, SshConfig, SslMode};
-use tablory_lib::db::{self, ColValue, Driver, Filter, RowChange, RowsRequest, Sort, TableRef};
-use tablory_lib::session::Sessions;
 
 fn docker() -> bool {
-    std::env::var("TABLORY_TEST_DOCKER").is_ok()
+    std::env::var("KLIKDB_TEST_DOCKER").is_ok()
 }
 
 fn pw(p: &str) -> Secrets {
@@ -48,7 +48,7 @@ fn mysql() -> ConnectionProfile {
 }
 
 async fn driver(p: &ConnectionProfile) -> Arc<dyn Driver> {
-    db::connect(p, &pw("tablory"), (p.host.clone(), p.port), &p.database)
+    db::connect(p, &pw("klikdb"), (p.host.clone(), p.port), &p.database)
         .await
         .expect("connect")
 }
@@ -381,7 +381,7 @@ async fn sql_server() {
     }
     let master = db::connect(
         &mssql(""),
-        &pw("Tablory!2026"),
+        &pw("KlikDB!2026"),
         ("127.0.0.1".into(), 14339),
         "",
     )
@@ -395,7 +395,7 @@ async fn sql_server() {
 
     let d = db::connect(
         &mssql("shop"),
-        &pw("Tablory!2026"),
+        &pw("KlikDB!2026"),
         ("127.0.0.1".into(), 14339),
         "shop",
     )
@@ -479,7 +479,7 @@ async fn ssh_tunnel_password_and_key() {
     if !docker() {
         return;
     }
-    let dir = std::env::temp_dir().join(format!("tablory-test-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("klikdb-test-{}", std::process::id()));
     let sessions = Sessions::new(dir);
     let mut p = pg();
     p.host = "postgres".into(); // only resolvable from the bastion
@@ -488,13 +488,13 @@ async fn ssh_tunnel_password_and_key() {
         enabled: true,
         host: "127.0.0.1".into(),
         port: 22229,
-        user: "tablory".into(),
+        user: "klikdb".into(),
         auth: SshAuth::Password,
         key_path: String::new(),
     };
     let secrets = Secrets {
-        password: Some("tablory".into()),
-        ssh_password: Some("tablory".into()),
+        password: Some("klikdb".into()),
+        ssh_password: Some("klikdb".into()),
         ssh_passphrase: None,
     };
     assert_eq!(sessions.test(&p, &secrets).await.unwrap(), "shop");
@@ -530,7 +530,7 @@ async fn ssh_tunnel_password_and_key() {
 
 #[tokio::test]
 async fn sqlite() {
-    let file = std::env::temp_dir().join(format!("tablory-{}.sqlite", std::process::id()));
+    let file = std::env::temp_dir().join(format!("klikdb-{}.sqlite", std::process::id()));
     let _ = std::fs::remove_file(&file);
     std::fs::File::create(&file).unwrap();
     let p = ConnectionProfile {
@@ -573,7 +573,7 @@ fn ssh_bastion() -> SshConfig {
         enabled: true,
         host: "127.0.0.1".into(),
         port: 22229,
-        user: "tablory".into(),
+        user: "klikdb".into(),
         auth: SshAuth::Password,
         key_path: String::new(),
     }
@@ -584,7 +584,7 @@ async fn redis() {
     if !docker() {
         return;
     }
-    let dir = std::env::temp_dir().join(format!("tablory-redis-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("klikdb-redis-{}", std::process::id()));
     let sessions = Sessions::new(dir);
     let p = ConnectionProfile {
         kind: DbKind::Redis,
@@ -594,7 +594,7 @@ async fn redis() {
         ssl_mode: SslMode::Disable,
         ..Default::default()
     };
-    let info = sessions.connect(p.clone(), pw("tablory")).await.unwrap();
+    let info = sessions.connect(p.clone(), pw("klikdb")).await.unwrap();
     assert_eq!(info.database, "2");
     let r = sessions
         .get(&info.id)
@@ -662,7 +662,7 @@ async fn redis() {
     assert!(r.get("missing").await.is_err());
     assert!(r.command(&cmd(&["SELECT", "1"])).await.is_err());
     assert_eq!(
-        r.command(&tablory_lib::kv::split_args("GET \"user:1:name\"").unwrap())
+        r.command(&klikdb_lib::kv::split_args("GET \"user:1:name\"").unwrap())
             .await
             .unwrap(),
         json!("Zoë")
@@ -690,8 +690,8 @@ async fn redis() {
     tunneled.port = 6379;
     tunneled.ssh = ssh_bastion();
     let secrets = Secrets {
-        password: Some("tablory".into()),
-        ssh_password: Some("tablory".into()),
+        password: Some("klikdb".into()),
+        ssh_password: Some("klikdb".into()),
         ssh_passphrase: None,
     };
     assert_eq!(sessions.test(&tunneled, &secrets).await.unwrap(), "2");
@@ -703,7 +703,7 @@ async fn mongodb() {
     if !docker() {
         return;
     }
-    let dir = std::env::temp_dir().join(format!("tablory-mongo-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("klikdb-mongo-{}", std::process::id()));
     let sessions = Sessions::new(dir);
     let p = ConnectionProfile {
         kind: DbKind::Mongodb,
@@ -714,7 +714,7 @@ async fn mongodb() {
         ssl_mode: SslMode::Disable,
         ..Default::default()
     };
-    let info = sessions.connect(p.clone(), pw("tablory")).await.unwrap();
+    let info = sessions.connect(p.clone(), pw("klikdb")).await.unwrap();
     assert_eq!(info.database, "shop");
     let m = sessions
         .get(&info.id)
@@ -802,15 +802,15 @@ async fn mongodb() {
     tunneled.port = 27017;
     tunneled.ssh = ssh_bastion();
     let secrets = Secrets {
-        password: Some("tablory".into()),
-        ssh_password: Some("tablory".into()),
+        password: Some("klikdb".into()),
+        ssh_password: Some("klikdb".into()),
         ssh_passphrase: None,
     };
     assert_eq!(sessions.test(&tunneled, &secrets).await.unwrap(), "shop");
 
     let mut by_uri = p.clone();
     by_uri.uri =
-        "mongodb://root:tablory@127.0.0.1:27019/shop?authSource=admin&directConnection=true".into();
+        "mongodb://root:klikdb@127.0.0.1:27019/shop?authSource=admin&directConnection=true".into();
     by_uri.database = String::new();
     assert_eq!(
         sessions.test(&by_uri, &Secrets::default()).await.unwrap(),

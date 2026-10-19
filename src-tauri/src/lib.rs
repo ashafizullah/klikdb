@@ -89,7 +89,7 @@ pub fn run() {
             commands::mongo_command,
         ])
         .build(tauri::generate_context!())
-        .expect("error while building Tablory");
+        .expect("error while building KlikDB");
 
     app.run(|app, event| {
         if let RunEvent::Exit = event {

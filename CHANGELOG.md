@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Renamed to KlikDB, with a new icon and installer artwork. Saved connections, passwords and history carry over. On Windows the update installs as KlikDB; uninstall the old Tablory entry afterwards.
 - Connection groups: right-click the connection list to create, rename or delete groups; drag connections between groups.
 - Import connections from a Navicat export (`.ncx`), including saved passwords.
 

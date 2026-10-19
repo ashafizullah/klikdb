@@ -288,6 +288,7 @@ fn write_json<T: Serialize + ?Sized>(file: &Path, value: &T) -> Result<()> {
     Ok(())
 }
 
+// Named before the KlikDB rename; changing it would orphan passwords saved by 0.1.x.
 const KEYRING_SERVICE: &str = "app.tablory";
 
 fn entry(id: &str) -> Result<keyring::Entry> {
@@ -334,7 +335,7 @@ mod tests {
 
     #[test]
     fn groups_lifecycle() {
-        let dir = std::env::temp_dir().join(format!("tablory-test-{}", uuid::Uuid::new_v4()));
+        let dir = std::env::temp_dir().join(format!("klikdb-test-{}", uuid::Uuid::new_v4()));
         let s = Store::new(&dir);
         let c = s
             .save(ConnectionProfile {
