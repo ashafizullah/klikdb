@@ -179,14 +179,13 @@ fn decrypt_v11(data: &[u8]) -> Option<String> {
 
     let mut cv = encrypt([0xFF; 8]);
     let mut out = Vec::with_capacity(data.len());
-    let mut chunks = data.chunks_exact(8);
-    for c in &mut chunks {
-        let mut block = <[u8; 8]>::try_from(c).ok()?.into();
+    let (chunks, rest) = data.as_chunks::<8>();
+    for c in chunks {
+        let mut block = (*c).into();
         bf.decrypt_block(&mut block);
         out.extend_from_slice(&xor(block.into(), &cv));
         cv = xor(cv, c);
     }
-    let rest = chunks.remainder();
     if !rest.is_empty() {
         let pad = encrypt(cv);
         out.extend(rest.iter().zip(pad).map(|(a, b)| a ^ b));
