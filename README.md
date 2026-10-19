@@ -50,7 +50,7 @@ Get the latest version from **[Releases](https://github.com/ashafizullah/klikdb/
 | macOS 11+ (Apple Silicon & Intel) | `KlikDB_x.y.z_universal.dmg` |
 | Windows 10/11 (x64) | `KlikDB_x.y.z_x64-setup.exe` or `.msi` |
 
-**macOS:** open the DMG and drag KlikDB into Applications. The app is ad-hoc signed, not notarized, so the first time right-click KlikDB → Open, or run `xattr -cr /Applications/KlikDB.app`.
+**macOS:** open the DMG and drag KlikDB into Applications. KlikDB is signed and notarized by Apple, so it opens without a Gatekeeper warning.
 
 **Windows:** SmartScreen may warn about an unsigned app. Click **More info → Run anyway**.
 
@@ -94,9 +94,9 @@ Issues and pull requests are welcome. CI runs type checks, the frontend build, `
 
 ### Releasing
 
-Add a `## x.y.z` section to `CHANGELOG.md`, bump `version` in `tauri.conf.json`, `Cargo.toml` and `package.json`, then push a tag. CI builds the macOS DMG and the Windows installers, signs the update packages and attaches everything (including `latest.json` for the in-app updater) to a draft release. Publish the draft to roll it out: installed apps only see published releases.
+Add a `## x.y.z` section to `CHANGELOG.md`, bump `version` in `tauri.conf.json`, `Cargo.toml` and `package.json`, then push a tag. CI builds the signed and notarized macOS DMG and the Windows installers, signs the update packages and attaches everything (including `latest.json` for the in-app updater) to a draft release. Publish the draft to roll it out: installed apps only see published releases.
 
-Releases need the `TAURI_SIGNING_PRIVATE_KEY` secret (contents of `~/.tauri/tablory.key`, empty password; its public key is in `tauri.conf.json`).
+Releases need the `TAURI_SIGNING_PRIVATE_KEY` secret (contents of `~/.tauri/tablory.key`, empty password; its public key is in `tauri.conf.json`) plus `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_ID`, `APPLE_PASSWORD` and `APPLE_TEAM_ID` for macOS signing and notarization.
 
 ```sh
 git tag v0.1.0 && git push origin v0.1.0
