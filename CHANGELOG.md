@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.3
 
 - App identifier changed from `com.tablory.app` to `com.klikdb.app`. Saved connections, query history and open query tabs move over on first launch. On macOS, the keychain may ask once per saved password; choose Always Allow.
 
