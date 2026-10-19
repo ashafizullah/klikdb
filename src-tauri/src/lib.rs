@@ -1,10 +1,10 @@
 mod commands;
-mod menu;
 pub mod connections;
 pub mod db;
 pub mod docdb;
 pub mod export;
 pub mod kv;
+mod menu;
 pub mod navicat;
 pub mod session;
 pub mod ssh;

@@ -11,8 +11,8 @@ use crate::db::{
     TableStructure,
 };
 use crate::docdb::FindResult;
-use crate::kv::{self, KeyValue, ScanPage};
 use crate::export;
+use crate::kv::{self, KeyValue, ScanPage};
 use crate::navicat;
 use crate::session::{Backend, SessionInfo};
 use crate::AppState;
@@ -317,10 +317,7 @@ pub async fn count_query(
     if !head.eq_ignore_ascii_case("SELECT COUNT(*)") || sql.contains(';') {
         return Err("only a single SELECT COUNT(*) is allowed".into());
     }
-    let rs = driver!(state, session)
-        .query(&sql, 1)
-        .await
-        .map_err(err)?;
+    let rs = driver!(state, session).query(&sql, 1).await.map_err(err)?;
     Ok(match rs.rows.first().and_then(|r| r.first()) {
         Some(serde_json::Value::Number(n)) => n.as_u64(),
         Some(serde_json::Value::String(s)) => s.parse().ok(),

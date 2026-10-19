@@ -46,10 +46,20 @@ pub fn build<R: Runtime>(app: &AppHandle<R>) -> tauri::Result<Menu<R>> {
 
     let mut file = SubmenuBuilder::new(app, "File")
         .item(&item(app, "new-query", "New Query", Some("CmdOrCtrl+T"))?)
-        .item(&item(app, "open-file", "Open SQL File…", Some("CmdOrCtrl+O"))?)
+        .item(&item(
+            app,
+            "open-file",
+            "Open SQL File…",
+            Some("CmdOrCtrl+O"),
+        )?)
         .separator()
         .item(&item(app, "save", "Save", Some("CmdOrCtrl+S"))?)
-        .item(&item(app, "save-as", "Save As…", Some("CmdOrCtrl+Shift+S"))?)
+        .item(&item(
+            app,
+            "save-as",
+            "Save As…",
+            Some("CmdOrCtrl+Shift+S"),
+        )?)
         .separator()
         .item(&item(app, "close-tab", "Close Tab", Some("CmdOrCtrl+W"))?)
         .separator()
@@ -116,9 +126,7 @@ pub fn handle(app: &AppHandle, id: &str) {
         "check-updates" => {
             let app = app.clone();
             // The update dialogs block, so keep them off the main thread.
-            std::thread::spawn(move || {
-                tauri::async_runtime::block_on(updater::check(app, true))
-            });
+            std::thread::spawn(move || tauri::async_runtime::block_on(updater::check(app, true)));
         }
         "quit" => app.exit(0),
         "website" => open_url(REPO),
