@@ -1,10 +1,17 @@
 # Changelog
 
-## Unreleased
+## 0.1.2
 
 - Renamed to KlikDB, with a new icon and installer artwork. Saved connections, passwords and history carry over. On Windows the update installs as KlikDB; uninstall the old Tablory entry afterwards.
+- Connection tree: connection → database → tables, views, functions and procedures; right-click to disconnect, close or reopen. Groups can have a color.
 - Connection groups: right-click the connection list to create, rename or delete groups; drag connections between groups.
 - Import connections from a Navicat export (`.ncx`), including saved passwords.
+- SQL Server: Windows authentication, named instances (`server\INSTANCE`, `.`, `(local)`) and LocalDB.
+- Safety: DELETE/UPDATE without WHERE, TRUNCATE and DROP ask first. Per-connection Production (asks before every write, manual commit) and Read-only modes.
+- Manual commit mode with a Commit / Roll back bar.
+- SQL editor: richer highlighting, column autocomplete with types, searchable query history, and query tabs that can be saved and opened as `.sql` files and come back on reconnect.
+- Export results to CSV, Excel or JSON, or copy them as INSERT statements.
+- Native menu bar with File, View and Help, including About and Check for Updates.
 
 ## 0.1.1
 

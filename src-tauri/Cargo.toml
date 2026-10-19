@@ -1,6 +1,6 @@
 [package]
 name = "klikdb"
-version = "0.1.1"
+version = "0.1.2"
 description = "Free, open-source, native database manager"
 authors = ["KlikDB contributors"]
 license = "MIT"
