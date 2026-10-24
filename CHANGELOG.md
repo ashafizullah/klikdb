@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5
+
+- Licenses, at the bottom of the connections screen, shows the license of every bundled package, the fonts included
+
 ## 0.1.4
 
 - New Darkroom look, matching KlikReel and KlikDesign: warm paper in light mode, warm charcoal in dark mode, tungsten-amber accents, warmer syntax colors and new typography (IBM Plex Sans, IBM Plex Mono and Fraunces, bundled so they work offline)
