@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+- New Darkroom look, matching KlikReel and KlikDesign: warm paper in light mode, warm charcoal in dark mode, tungsten-amber accents, warmer syntax colors and new typography (IBM Plex Sans, IBM Plex Mono and Fraunces, bundled so they work offline)
+
 ## 0.1.3
 
 - App identifier changed from `com.tablory.app` to `com.klikdb.app`. Saved connections, query history and open query tabs move over on first launch. On macOS, the keychain may ask once per saved password; choose Always Allow.
