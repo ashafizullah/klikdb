@@ -3132,7 +3132,7 @@ dependencies = [
 
 [[package]]
 name = "klikdb"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
  "aes 0.8.4",
  "anyhow",
