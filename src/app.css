@@ -1,62 +1,74 @@
 /* Native-feeling desktop tool: follows the OS theme, one accent (selection and
-   primary actions), flat surfaces. Edit-state colors mark real pending changes. */
+   primary actions), flat surfaces. Edit-state colors mark real pending changes.
+   Darkroom palette: warm paper by day, warm charcoal by night, tungsten amber. */
 :root {
-  --bg: #f6f6f7;
-  --panel: #ffffff;
-  --sidebar: #eeeef1;
-  --text: #1d1d1f;
-  --muted: #6e6e73;
-  --border: #d9d9de;
-  --grid-line: #ececf0;
-  --hover: #e6e6eb;
-  --accent: #2563eb;
+  --bg: #f4f0e8;
+  --panel: #fbf8f2;
+  --sidebar: #ece6da;
+  --text: #1b1916;
+  --muted: #6f685c;
+  --border: #ddd5c6;
+  --grid-line: #ebe5d9;
+  --hover: #e6dfd1;
+  --accent: #a65d0c;
   --accent-text: #ffffff;
-  --selection: #dbe6fd;
-  --danger: #d70015;
-  --edited: #fff4c2;
-  --inserted: #dcf5df;
-  --deleted: #fde0e0;
-  --null: #a1a1a6;
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --syn-keyword: #0b57d0;
-  --syn-function: #a626a4;
-  --syn-type: #0e7c86;
-  --syn-string: #2f8a3b;
-  --syn-number: #b35c00;
-  --syn-ident: #8a5a00;
-  --syn-variable: #c2185b;
-  --syn-operator: #5c6370;
-  --syn-comment: #8e8e93;
+  --selection: #f3e2c2;
+  --danger: #c4321f;
+  --ok: #5a7a26;
+  --warn: #b45309;
+  --edited: #fbecc0;
+  --inserted: #e2ecce;
+  --deleted: #f6dbd3;
+  --null: #a59d8f;
+  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --serif: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --syn-keyword: #8a4b0b;
+  --syn-function: #9c3d2a;
+  --syn-type: #3f6b7c;
+  --syn-string: #5a7a26;
+  --syn-number: #c0621a;
+  --syn-ident: #7a5a1c;
+  --syn-variable: #a8326b;
+  --syn-operator: #6f685c;
+  --syn-comment: #9a917f;
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1c1c1e;
-    --panel: #232325;
-    --sidebar: #2a2a2d;
-    --text: #f2f2f7;
-    --muted: #a1a1a6;
-    --border: #3a3a3c;
-    --grid-line: #2f2f32;
-    --hover: #353538;
-    --accent: #3b82f6;
-    --selection: #23365c;
-    --danger: #ff6961;
-    --edited: #4a3f12;
-    --inserted: #183d22;
-    --deleted: #4d1f22;
-    --null: #6e6e73;
-    --syn-keyword: #6cb6ff;
-    --syn-function: #d68cf0;
-    --syn-type: #5ccfe6;
-    --syn-string: #8fd18c;
-    --syn-number: #f0b36a;
-    --syn-ident: #e5c07b;
-    --syn-variable: #f78fb3;
-    --syn-operator: #abb2bf;
-    --syn-comment: #7c7c82;
+    --bg: #15130f;
+    --panel: #1d1a15;
+    --sidebar: #191612;
+    --text: #ede6d8;
+    --muted: #9a917f;
+    --border: #2e2a22;
+    --grid-line: #25211b;
+    --hover: #2a251e;
+    --accent: #f0a83a;
+    --accent-text: #1a1208;
+    --selection: #3d2f19;
+    --danger: #e5484d;
+    --ok: #9bb067;
+    --warn: #f0a83a;
+    --edited: #4a3a14;
+    --inserted: #2b3519;
+    --deleted: #4a1f1c;
+    --null: #6f685c;
+    --syn-keyword: #f0a83a;
+    --syn-function: #e08a6a;
+    --syn-type: #8fb3c4;
+    --syn-string: #b5c77a;
+    --syn-number: #d98c5f;
+    --syn-ident: #e5c98b;
+    --syn-variable: #e28fb0;
+    --syn-operator: #b7ad9a;
+    --syn-comment: #6f685c;
   }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 * {
@@ -67,7 +79,8 @@ html,
 body {
   margin: 0;
   height: 100%;
-  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font: 13px/1.4 var(--sans);
+  -webkit-font-smoothing: antialiased;
   color: var(--text);
   background: var(--bg);
   -webkit-user-select: none;
@@ -112,6 +125,8 @@ textarea {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--accent-text);
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25);
 }
 .btn.primary:hover:not(:disabled) {
   background: var(--accent);
@@ -145,6 +160,7 @@ textarea {
 .field:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
 }
 select.field {
   padding-right: 4px;

@@ -495,11 +495,11 @@
     border-color: var(--accent);
   }
   .pending {
-    color: #b45309;
+    color: var(--warn);
     font-size: 12px;
   }
   .saved {
-    color: #16a34a;
+    color: var(--ok);
     font-size: 12px;
   }
   .range {

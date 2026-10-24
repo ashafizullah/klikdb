@@ -458,8 +458,8 @@
     height: 7px;
     border-radius: 50%;
     flex: none;
-    background: #22c55e;
-    box-shadow: 0 0 0 2px color-mix(in srgb, #22c55e 25%, transparent);
+    background: var(--ok);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 25%, transparent);
   }
   .swatch {
     width: 9px;

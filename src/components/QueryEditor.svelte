@@ -468,6 +468,6 @@
     background: var(--bg);
   }
   .warn {
-    color: #b45309;
+    color: var(--warn);
   }
 </style>

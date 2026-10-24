@@ -329,13 +329,13 @@
     color: var(--muted);
   }
   .dirty {
-    color: #d97706;
+    color: var(--warn);
     font-size: 9px;
     margin-right: 4px;
   }
   .unsaved {
     margin-left: 1px;
-    color: #d97706;
+    color: var(--warn);
     font-weight: 600;
   }
   .close {

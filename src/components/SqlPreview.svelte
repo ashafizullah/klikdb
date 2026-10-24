@@ -48,7 +48,9 @@
     box-shadow: 0 12px 40px rgb(0 0 0 / 0.25);
   }
   h2 {
-    font-size: 15px;
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
     margin: 0 0 4px;
   }
   p {

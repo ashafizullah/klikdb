@@ -383,7 +383,10 @@
     padding: 8px 28px 28px;
   }
   h1 {
-    font-size: 18px;
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
     margin: 0 0 16px;
   }
   .kinds {
@@ -471,7 +474,7 @@
     align-items: center;
   }
   .ok {
-    color: #16a34a;
+    color: var(--ok);
   }
   .actions {
     display: flex;

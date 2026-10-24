@@ -458,7 +458,10 @@
     padding-left: 80px;
   }
   .app-name {
-    font-weight: 600;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
   .items {
     flex: 1;

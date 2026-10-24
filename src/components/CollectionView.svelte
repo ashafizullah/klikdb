@@ -346,7 +346,7 @@
     border-top: 1px solid var(--border);
   }
   .pending {
-    color: #b45309;
+    color: var(--warn);
     font-size: 12px;
   }
   .bar {
@@ -360,7 +360,7 @@
     background: var(--bg);
   }
   .saved {
-    color: #16a34a;
+    color: var(--ok);
     font-size: 12px;
   }
   .range {
