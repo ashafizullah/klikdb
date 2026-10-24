@@ -5,6 +5,7 @@
   import { COLORS, kindLabel } from "../lib/cells";
   import type { ConnectionProfile } from "../lib/types";
   import ConnectionForm from "./ConnectionForm.svelte";
+  import NoticesDialog from "./NoticesDialog.svelte";
 
   let { loadError }: { loadError: string | null } = $props();
 
@@ -15,6 +16,7 @@
   // Group of the next new connection.
   let newGroup = $state("");
   let notice = $state<{ ok: boolean; text: string; detail: string[] } | null>(null);
+  let showNotices = $state(false);
 
   onMount(() => {
     invoke<string>("app_version").then((v) => (version = v)).catch(() => {});
@@ -369,6 +371,9 @@
         Import…
       </button>
       <span class="spacer"></span>
+      <button class="link muted" onclick={() => (showNotices = true)} title="Licenses of the software bundled into KlikDB">
+        Licenses
+      </button>
       <button class="link muted" onclick={() => invoke("check_updates")} title="Check for updates">
         {version ? `v${version}` : "Updates"}
       </button>
@@ -389,6 +394,10 @@
     {/key}
   </main>
 </div>
+
+{#if showNotices}
+  <NoticesDialog onclose={() => (showNotices = false)} />
+{/if}
 
 {#if drag}
   <div class="ghost" style:left="{drag.x + 12}px" style:top="{drag.y + 8}px">

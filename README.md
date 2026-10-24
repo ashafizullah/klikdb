@@ -125,4 +125,4 @@ KlikDB is free and always will be. If it saves you time, **[buy me an AI token o
 
 [MIT](LICENSE)
 
-The interface fonts (Fraunces, IBM Plex Sans and IBM Plex Mono) are bundled under the SIL Open Font License 1.1; see [`public/licenses/fonts.txt`](public/licenses/fonts.txt), which also ships inside the app.
+The app bundles third-party software, including the interface fonts Fraunces, IBM Plex Sans and IBM Plex Mono (SIL Open Font License 1.1). Their licenses are in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), which the app also shows from the Licenses link on the connections screen. Run `npm run notices` after changing dependencies.
