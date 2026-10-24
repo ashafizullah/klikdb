@@ -2,6 +2,7 @@
 
 ## 0.1.5
 
+- App identifier changed from `com.klikdb.app` to `com.ashafizullah.klikdb`, matching the other Klik apps. Saved connections, query history and open query tabs move over on first launch, also when updating straight from Tablory (0.1.2 or earlier). On macOS, the keychain may ask once per saved password; choose Always Allow.
 - Licenses, at the bottom of the connections screen, shows the license of every bundled package, the fonts included
 
 ## 0.1.4
