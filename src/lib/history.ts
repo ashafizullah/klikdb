@@ -13,7 +13,7 @@ export interface HistoryEntry {
 }
 
 const MAX = 500;
-const key = (connectionId: string) => `tablory.history.${connectionId}`;
+const key = (connectionId: string) => `klikdb.history.${connectionId}`;
 
 export function loadHistory(connectionId: string): HistoryEntry[] {
   try {

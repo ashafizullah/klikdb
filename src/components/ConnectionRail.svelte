@@ -25,7 +25,7 @@
   }
 
   // Groups share their collapsed state with the connections screen.
-  const GROUPS_KEY = "tablory.collapsedGroups";
+  const GROUPS_KEY = "klikdb.collapsedGroups";
   let collapsedGroups = $state<string[]>(load(GROUPS_KEY) ?? []);
   function toggleGroup(g: string) {
     collapsedGroups = collapsedGroups.includes(g) ? collapsedGroups.filter((x) => x !== g) : [...collapsedGroups, g];
@@ -33,7 +33,7 @@
   }
 
   // Object categories start collapsed except tables.
-  const CATS_KEY = "tablory.openCategories";
+  const CATS_KEY = "klikdb.openCategories";
   let openCats = $state<string[]>(load(CATS_KEY) ?? ["table"]);
   function toggleCat(c: string) {
     openCats = openCats.includes(c) ? openCats.filter((x) => x !== c) : [...openCats, c];

@@ -105,7 +105,7 @@ Issues and pull requests are welcome. CI runs type checks, the frontend build, `
 
 Add a `## x.y.z` section to `CHANGELOG.md`, bump `version` in `tauri.conf.json`, `Cargo.toml` and `package.json`, then push a tag. CI builds the signed and notarized macOS DMG (app and DMG both notarized and stapled) and the Windows installers, signs the update packages and attaches everything (including `latest.json` for the in-app updater) to a draft release. Publish the draft to roll it out: installed apps only see published releases.
 
-Releases need the `TAURI_SIGNING_PRIVATE_KEY` secret (contents of `~/.tauri/tablory.key`, empty password; its public key is in `tauri.conf.json`) plus `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_ID`, `APPLE_PASSWORD` and `APPLE_TEAM_ID` for macOS signing and notarization.
+Releases need the `TAURI_SIGNING_PRIVATE_KEY` secret (contents of `~/.tauri/klikdb.key`, empty password; its public key is in `tauri.conf.json`) plus `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_ID`, `APPLE_PASSWORD` and `APPLE_TEAM_ID` for macOS signing and notarization.
 
 ```sh
 git tag v0.1.0 && git push origin v0.1.0

@@ -19,7 +19,7 @@
   // Query tabs survive a disconnect or restart: keep them saved as they change.
   $effect(() => app.persistQueries());
 
-  const RAIL_KEY = "tablory.connectionRail";
+  const RAIL_KEY = "klikdb.connectionRail";
   let showRail = $state(readRail());
   function readRail() {
     try {

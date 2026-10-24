@@ -27,7 +27,7 @@ export const queryModified = (t: QueryTab) => t.sql !== t.saved;
 const fileTitle = (path: string) => path.split(/[\\/]/).pop()!.replace(/\.sql$/i, "");
 
 /** Open query tabs per connection, restored on the next connect. */
-const QUERIES_KEY = (connectionId: string) => `tablory.queryTabs.${connectionId}`;
+const QUERIES_KEY = (connectionId: string) => `klikdb.queryTabs.${connectionId}`;
 type StoredQuery = Pick<QueryTab, "title" | "sql" | "path" | "saved">;
 
 /** Up to five "• item" lines, then a count of the rest. */

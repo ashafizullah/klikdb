@@ -33,7 +33,7 @@
     return [{ group: "", list: of("") }, ...app.groups.map((g) => ({ group: g, list: of(g) }))];
   });
 
-  const COLLAPSED_KEY = "tablory.collapsedGroups";
+  const COLLAPSED_KEY = "klikdb.collapsedGroups";
   let collapsed = $state<string[]>(readCollapsed());
   function readCollapsed(): string[] {
     try {

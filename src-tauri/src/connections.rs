@@ -288,8 +288,10 @@ fn write_json<T: Serialize + ?Sized>(file: &Path, value: &T) -> Result<()> {
     Ok(())
 }
 
-// Named before the KlikDB rename; changing it would orphan passwords saved by 0.1.x.
-const KEYRING_SERVICE: &str = "app.tablory";
+const KEYRING_SERVICE: &str = "com.ashafizullah.klikdb";
+/// Keychain service up to 0.1.5 (named in the Tablory days); a connection's
+/// secrets found there move to [`KEYRING_SERVICE`] when first read.
+const OLD_KEYRING_SERVICE: &str = "app.tablory";
 
 fn entry(id: &str) -> Result<keyring::Entry> {
     Ok(keyring::Entry::new(KEYRING_SERVICE, id)?)
@@ -297,11 +299,25 @@ fn entry(id: &str) -> Result<keyring::Entry> {
 
 /// All secrets of a connection are one keychain item, so macOS asks once.
 pub fn load_secrets(id: &str) -> Secrets {
-    entry(id)
-        .and_then(|e| Ok(e.get_password()?))
-        .ok()
+    read_secrets(id)
         .and_then(|s| serde_json::from_str(&s).ok())
         .unwrap_or_default()
+}
+
+fn read_secrets(id: &str) -> Option<String> {
+    let current = entry(id).ok()?;
+    match current.get_password() {
+        Ok(s) => return Some(s),
+        Err(keyring::Error::NoEntry) => {}
+        Err(_) => return None,
+    }
+    let old = keyring::Entry::new(OLD_KEYRING_SERVICE, id).ok()?;
+    let s = old.get_password().ok()?;
+    // The old item goes only once the new one is written.
+    if current.set_password(&s).is_ok() {
+        let _ = old.delete_credential();
+    }
+    Some(s)
 }
 
 /// Stores `secrets` over the existing ones; empty strings clear a field.
@@ -325,6 +341,9 @@ pub fn save_secrets(id: &str, secrets: Secrets) -> Result<()> {
 
 pub fn delete_secrets(id: &str) {
     if let Ok(e) = entry(id) {
+        let _ = e.delete_credential();
+    }
+    if let Ok(e) = keyring::Entry::new(OLD_KEYRING_SERVICE, id) {
         let _ = e.delete_credential();
     }
 }
