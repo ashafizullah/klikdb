@@ -5,7 +5,6 @@ pub mod docdb;
 pub mod export;
 pub mod kv;
 mod menu;
-mod migrate;
 pub mod navicat;
 pub mod session;
 pub mod ssh;
@@ -20,8 +19,6 @@ pub struct AppState {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let context = tauri::generate_context!();
-    migrate::run(&context.config().identifier);
     let app = tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|app, _, _| {
             if let Some(w) = app.get_webview_window("main") {
@@ -91,7 +88,7 @@ pub fn run() {
             commands::mongo_delete,
             commands::mongo_command,
         ])
-        .build(context)
+        .build(tauri::generate_context!())
         .expect("error while building KlikDB");
 
     app.run(|app, event| {

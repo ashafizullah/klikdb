@@ -2,7 +2,8 @@
 
 ## 0.1.6
 
-- Saved passwords, query history, query tabs and panel state move to storage named after KlikDB instead of Tablory. Nothing to do: they carry over the first time they are used
+- Passwords, query history, query tabs and panel state are now stored under the KlikDB name only. Ones saved by earlier versions are not read anymore: enter saved passwords again; history and open query tabs start empty
+- Updating straight from 0.1.4 or earlier: saved connections are not carried over either; add them again or import them from Navicat
 
 ## 0.1.5
 
