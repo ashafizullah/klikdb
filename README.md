@@ -130,3 +130,8 @@ KlikDB is free and always will be. If it saves you time, **[buy me an AI token o
 The app bundles third-party software, including the interface fonts Fraunces, IBM Plex Sans and IBM Plex Mono (SIL Open Font License 1.1). Their licenses are in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), which the app also shows from the Licenses link on the connections screen. Run `npm run notices` after changing dependencies.
 
 PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, Redis, MongoDB, Navicat, macOS and Windows are trademarks of their respective owners. KlikDB is an independent project, not affiliated with or endorsed by any of them.
+
+<p>
+  <a href="https://github.com/ashafizullah"><img src="https://github.com/ashafizullah.png?size=64" width="32" height="32" alt="" align="left" style="border-radius:50%"></a>
+  &nbsp;Built by <a href="https://github.com/ashafizullah"><b>Adam Suchi Hafizullah</b></a>
+</p>
