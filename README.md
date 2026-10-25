@@ -115,13 +115,7 @@ git tag v0.1.0 && git push origin v0.1.0
 
 ## Support
 
-KlikDB is free and always will be. If it saves you time, **[buy me an AI token on Trakteer](https://trakteer.id/adamshafizullah/tip)** ☕🤖.
-
-<p align="center">
-  <a href="https://trakteer.id/adamshafizullah/tip"><img src="design/trakteer-qr.png" width="200" alt="QR code: trakteer.id/adamshafizullah/tip"></a>
-  <br>
-  <sub>Scan to support on Trakteer</sub>
-</p>
+KlikDB is free. If it saves you time, **[buy me an AI token on Trakteer](https://trakteer.id/adamshafizullah/tip)** ☕🤖.
 
 ## License
 
