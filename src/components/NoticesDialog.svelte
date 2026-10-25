@@ -6,7 +6,10 @@
   let text = $state("");
 
   onMount(() => {
-    import("../../THIRD_PARTY_NOTICES.md?raw").then((m) => (text = m.default));
+    fetch("/THIRD_PARTY_NOTICES.md")
+      .then((r) => r.text())
+      .then((t) => (text = t))
+      .catch(() => (text = "https://github.com/ashafizullah/klikdb/blob/main/THIRD_PARTY_NOTICES.md"));
   });
 
   function onkeydown(e: KeyboardEvent) {
