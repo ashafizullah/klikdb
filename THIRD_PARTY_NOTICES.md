@@ -3844,6 +3844,8 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 ### cssparser-macros 0.7.1, cssparser 0.37.0, selectors 0.38.0 (MPL-2.0)
 
+Source code: https://github.com/servo/rust-cssparser, https://github.com/servo/stylo
+
 ```
 Mozilla Public License Version 2.0
 ==================================
@@ -5098,6 +5100,8 @@ have been licensed under extremely permissive terms.
 ```
 
 ### dtoa-short 0.3.5 (MPL-2.0)
+
+Source code: https://github.com/upsuper/dtoa-short
 
 ```
 Mozilla Public License Version 2.0
@@ -9095,6 +9099,8 @@ SOFTWARE.
 ```
 
 ### option-ext 0.2.0 (MPL-2.0)
+
+Source code: https://github.com/soc/option-ext.git
 
 ```
 Mozilla Public License Version 2.0

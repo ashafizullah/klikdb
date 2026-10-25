@@ -165,7 +165,7 @@ for (const target of ["aarch64-apple-darwin", "x86_64-apple-darwin", "x86_64-pc-
   seen.delete(rootId);
   for (const id of seen) {
     const p = packages.get(id);
-    crates.set(`${p.name}@${p.version}`, { name: p.name, version: p.version, license: p.license ?? "", dir: dirname(p.manifest_path), authors: p.authors });
+    crates.set(`${p.name}@${p.version}`, { name: p.name, version: p.version, license: p.license ?? "", dir: dirname(p.manifest_path), authors: p.authors, repository: p.repository });
   }
 }
 
@@ -183,10 +183,14 @@ for (const c of sortedCrates) {
   if (!c.license || !allowed(c.license)) problems.push(`crate ${c.name}@${c.version}: ${c.license || "no license field"}`);
   const text = c.text ?? fallbackText(c);
   const key = `${c.license}\n${text}`;
-  if (!groups.has(key)) groups.set(key, { license: c.license, text, names: [] });
-  groups.get(key).names.push(`${c.name} ${c.version}`);
+  if (!groups.has(key)) groups.set(key, { license: c.license, text, names: [], sources: new Set() });
+  const g = groups.get(key);
+  g.names.push(`${c.name} ${c.version}`);
+  if (c.repository) g.sources.add(c.repository);
 }
-const rustParts = [...groups.values()].map((g) => `### ${g.names.join(", ")} (${g.license})\n\n\`\`\`\n${g.text}\n\`\`\``);
+// MPL-2.0 (section 3.2) asks binaries to say where the source is; KlikDB uses these crates unmodified.
+const sourceLine = (g) => (/^MPL-2\.0$/.test(g.license) && g.sources.size ? `Source code: ${[...g.sources].join(", ")}\n\n` : "");
+const rustParts = [...groups.values()].map((g) => `### ${g.names.join(", ")} (${g.license})\n\n${sourceLine(g)}\`\`\`\n${g.text}\n\`\`\``);
 
 if (problems.length) {
   console.error(`License check failed:\n  ${problems.join("\n  ")}`);

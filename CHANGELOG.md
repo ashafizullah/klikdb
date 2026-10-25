@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.8
+
+- Third-party notices now give a source link for the MPL-2.0 crates
+- The app's copyright line now names its author
+
 ## 0.1.7
 
 - Third-party license notices now include every Rust crate, with the full license and notice texts for packages under more than one license
