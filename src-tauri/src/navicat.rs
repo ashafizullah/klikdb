@@ -3,7 +3,9 @@
 //! An `.ncx` file is XML with one `<Connection>` element per connection.
 //! Passwords are encrypted: Navicat 12+ uses AES-128-CBC with a fixed key,
 //! Navicat 11 a Blowfish-based scheme with a fixed key. Both are decrypted
-//! here so imported connections keep their passwords.
+//! here so imported connections keep their passwords. The schemes and the
+//! test vectors below come from HyperSine's write-up (MIT License):
+//! https://github.com/HyperSine/how-does-navicat-encrypt-password
 
 use anyhow::{bail, Context, Result};
 use serde::Serialize;

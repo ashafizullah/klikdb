@@ -26,7 +26,7 @@
   Part of <a href="https://klikapps.pages.dev"><b>Klik Apps</b></a>, a family of free, open-source desktop apps: <a href="https://klikapps.pages.dev">klikapps.pages.dev</a>
 </p>
 
-> KlikDB was called **Tablory** up to 0.1.1. Your saved connections, passwords and query history carry over.
+> KlikDB was called **Tablory** up to 0.1.1. Connections, passwords and history saved by Tablory are not carried over; see 0.1.6 in the [changelog](CHANGELOG.md).
 
 ## Features
 
@@ -65,6 +65,8 @@ curl -fsSL https://raw.githubusercontent.com/ashafizullah/klikdb/main/install.sh
 
 ## Shortcuts
 
+On Windows, use Ctrl instead of ⌘.
+
 | Key | Action |
 | --- | --- |
 | ⌘T | New SQL query |
@@ -99,11 +101,11 @@ Without `KLIKDB_TEST_DOCKER` only the unit tests and the SQLite test run.
 
 ## Contributing
 
-Issues and pull requests are welcome. CI runs type checks, the frontend build, `cargo fmt`, `clippy` and `cargo test`. Please run them locally before opening a PR. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, checks and guidelines.
+Issues and pull requests are welcome. CI runs type checks, the frontend build, `cargo fmt`, `clippy`, `cargo test` and a license check. Please run them locally before opening a PR. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, checks and guidelines.
 
 ### Releasing
 
-Add a `## x.y.z` section to `CHANGELOG.md`, bump `version` in `tauri.conf.json`, `Cargo.toml` and `package.json`, then push a tag. CI builds the signed and notarized macOS DMG (app and DMG both notarized and stapled) and the Windows installers, signs the update packages and attaches everything (including `latest.json` for the in-app updater) to a draft release. Publish the draft to roll it out: installed apps only see published releases.
+Add a `## x.y.z` section to `CHANGELOG.md`, bump `version` in `tauri.conf.json`, `Cargo.toml` and `package.json` (and the lock files), then push a tag. CI builds the signed and notarized macOS DMG (app and DMG both notarized and stapled) and the Windows installers, signs the update packages and attaches everything (including `latest.json` for the in-app updater) to a draft release. Publish the draft to roll it out: installed apps only see published releases.
 
 Releases need the `TAURI_SIGNING_PRIVATE_KEY` secret (contents of `~/.tauri/klikdb.key`, empty password; its public key is in `tauri.conf.json`) plus `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_ID`, `APPLE_PASSWORD` and `APPLE_TEAM_ID` for macOS signing and notarization.
 
@@ -126,3 +128,5 @@ KlikDB is free and always will be. If it saves you time, **[buy me an AI token o
 [MIT](LICENSE)
 
 The app bundles third-party software, including the interface fonts Fraunces, IBM Plex Sans and IBM Plex Mono (SIL Open Font License 1.1). Their licenses are in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), which the app also shows from the Licenses link on the connections screen. Run `npm run notices` after changing dependencies.
+
+PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, Redis, MongoDB, Navicat, macOS and Windows are trademarks of their respective owners. KlikDB is an independent project, not affiliated with or endorsed by any of them.

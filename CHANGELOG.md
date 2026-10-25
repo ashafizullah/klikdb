@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.7
+
+- Third-party license notices now include every Rust crate, with the full license and notice texts for packages under more than one license
+- Navicat import credits HyperSine's write-up of Navicat's password encryption
+
 ## 0.1.6
 
 - Passwords, query history, query tabs and panel state are now stored under the KlikDB name only. Ones saved by earlier versions are not read anymore: enter saved passwords again; history and open query tabs start empty

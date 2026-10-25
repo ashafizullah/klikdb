@@ -1,6 +1,6 @@
 {
   "name": "klikdb",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Free, open-source, native database manager for PostgreSQL, MySQL, SQLite and more",
   "private": true,
   "type": "module",
