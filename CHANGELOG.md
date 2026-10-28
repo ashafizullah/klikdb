@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.9
+
+- The connections sidebar links to KlikDB on GitHub, next to Open-source licenses (before: Licenses)
+
 ## 0.1.8
 
 - Third-party notices now give a source link for the MPL-2.0 crates
