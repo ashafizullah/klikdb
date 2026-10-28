@@ -77,6 +77,7 @@ pub fn run() {
             commands::open_sql_file,
             commands::export_result,
             commands::check_updates,
+            commands::open_github,
             commands::app_version,
             commands::redis_scan,
             commands::redis_get,

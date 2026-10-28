@@ -138,6 +138,10 @@ pub fn handle(app: &AppHandle, id: &str) {
     }
 }
 
+pub fn open_repo() {
+    open_url(REPO);
+}
+
 fn open_url(url: &str) {
     #[cfg(target_os = "windows")]
     let cmd = std::process::Command::new("explorer").arg(url).spawn();

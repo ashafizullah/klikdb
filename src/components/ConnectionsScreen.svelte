@@ -370,10 +370,13 @@
       <button class="link muted" onclick={importNavicat} title="Import connections exported from Navicat (.ncx)">
         Import…
       </button>
-      <span class="spacer"></span>
+    </div>
+    <div class="foot links">
+      <button class="link muted" onclick={() => invoke("open_github")} title="KlikDB on GitHub">GitHub</button>
       <button class="link muted" onclick={() => (showNotices = true)} title="Licenses of the software bundled into KlikDB">
-        Licenses
+        Open-source licenses
       </button>
+      <span class="spacer"></span>
       <button class="link muted" onclick={() => invoke("check_updates")} title="Check for updates">
         {version ? `v${version}` : "Updates"}
       </button>
@@ -609,6 +612,13 @@
   }
   .foot .link {
     margin-left: 6px;
+  }
+  .foot.links {
+    padding-top: 0;
+    border-top: none;
+  }
+  .foot.links .link:first-child {
+    margin-left: 0;
   }
   .spacer {
     flex: 1;

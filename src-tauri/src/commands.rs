@@ -597,6 +597,11 @@ pub async fn check_updates(app: AppHandle) {
 }
 
 #[tauri::command]
+pub fn open_github() {
+    crate::menu::open_repo();
+}
+
+#[tauri::command]
 pub fn app_version(app: AppHandle) -> String {
     app.package_info().version.to_string()
 }
